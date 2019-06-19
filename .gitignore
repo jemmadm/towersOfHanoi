@@ -1,0 +1,15 @@
+*.iml
+.idea/
+out/
+.gradle
+build/
+docs/_site/
+docs/Gemfile.lock
+README.md
+build.gradle
+docker-compose.yml
+docs/
+gradle/
+gradlew
+gradlew.bat
+
