@@ -29,7 +29,10 @@ public class Game {
 
     public void move(int towerFrom, int towerTo) {
 
-        if (!towers.get(towerFrom).empty() && (towers.get(towerFrom).peek() < towers.get(towerTo).peek())) {
+        Stack <Integer> towerFromStack = towers.get(towerFrom);
+        Stack <Integer> towerToStack = towers.get(towerTo);
+
+        if (!towers.get(towerFrom).empty() && (towerFromStack.peek() < towerToStack.peek())) {
             towers.get(towerTo).push(towers.get(towerFrom).pop());
         } else {
             towers.get(towerFrom).push(towers.get(towerTo).pop());
