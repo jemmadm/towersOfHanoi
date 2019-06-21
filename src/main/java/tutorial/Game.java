@@ -29,70 +29,52 @@ public class Game {
 
     public void move(int towerFrom, int towerTo) {
 
-        Stack <Integer> towerFromStack = towers.get(towerFrom);
-        Stack <Integer> towerToStack = towers.get(towerTo);
+        Stack<Integer> towerFromStack = towers.get(towerFrom);
+        Stack<Integer> towerToStack = towers.get(towerTo);
 
-        if (!towers.get(towerFrom).empty() && (towerFromStack.peek() < towerToStack.peek())) {
-            towers.get(towerTo).push(towers.get(towerFrom).pop());
+        if (!towerFromStack.empty() && towerToStack.empty()) {
+            towerToStack.push(towerFromStack.pop());
+        } else if (towerFromStack.empty() && !towerToStack.empty()) {
+            towerFromStack.push(towerToStack.pop());
+        } else if (towerFromStack.peek() < towerToStack.peek()) {
+            towerToStack.push(towerFromStack.pop());
         } else {
-            towers.get(towerFrom).push(towers.get(towerTo).pop());
+            towerFromStack.push(towerToStack.pop());
         }
 
     }
 
     public void play() {
-
-
         if (numberOfDiscs % 2 == 0) {
-
-//            try {
             while (tower3.size() != numberOfDiscs) {
-                if (tower2.empty()) {
-                    move(0, 1);
-                } else {
-                    move(1, 0);
-                }
-                if (tower3.empty()) {
-                    move(0, 2);
-                } else {
-                    move(2, 0);
-                }
-                if (tower3.peek() > tower2.peek()) {
-                    move(1, 2);
-                } else {
-                    move(2, 1);
-                }
-                if (tower3.size() == numberOfDiscs) {
-                    result();
-                    break;
-                }
+                move(0, 1);
+                if (checkGameComplete()) break;
+                move(0, 2);
+                if (checkGameComplete()) break;
+                move(1, 2);
+                if (checkGameComplete()) break;
             }
         } else {
             while (tower3.size() != numberOfDiscs) {
                 move(0, 2);
-
-                if (tower3.size() == numberOfDiscs) {
-                    result();
-                    break;
-                }
-                if (tower2.size() < tower1.size()) {
-                    move(0, 1);
-                } else {
-                    move(1, 0);
-                }
-                if (tower2.size() < tower3.size()) {
-                    move(2, 1);
-                } else {
-                    move(1, 2);
-                }
+                if (checkGameComplete()) break;
+                move(0, 1);
+                if (checkGameComplete()) break;
+                move(1, 2);
+                if (checkGameComplete()) break;
             }
         }
     }
-
+    private boolean checkGameComplete() {
+        if (tower3.size() == numberOfDiscs) {
+            result();
+            return true;
+        }
+        return false;
+    }
 
     public Stack result() {
         return tower3;
     }
-
 }
 

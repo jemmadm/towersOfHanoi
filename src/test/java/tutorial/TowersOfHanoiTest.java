@@ -2,12 +2,9 @@ package tutorial;
 
 import org.junit.Test;
 
-import java.util.Stack;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TowersOfHanoiTest {
-
 
 
     @Test
@@ -32,6 +29,14 @@ public class TowersOfHanoiTest {
         assertThat(game.result()).isEmpty();
         game.play();
         assertThat(game.result()).containsOnly(1, 2, 3);
+    }
+
+    @Test
+    public void checkFourDiscsMethodWorks() {
+        Game game = new Game(4);
+        assertThat(game.result()).isEmpty();
+        game.play();
+        assertThat(game.result()).containsOnly(1, 2, 3, 4);
     }
 
     @Test
