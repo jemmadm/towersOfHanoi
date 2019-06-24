@@ -11,7 +11,7 @@ public class Game {
     private Stack<Integer> tower3 = new Stack<>();
     private List<Stack> towers = new ArrayList<>();
 
-    int numberOfDiscs;
+    private int numberOfDiscs;
 
     public Game(int numberOfDiscs) {
 
@@ -21,7 +21,6 @@ public class Game {
 
             tower1.push(i);
         }
-
         towers.add(tower1);
         towers.add(tower2);
         towers.add(tower3);
@@ -41,7 +40,6 @@ public class Game {
         } else {
             towerFromStack.push(towerToStack.pop());
         }
-
     }
 
     public void play() {
@@ -66,15 +64,10 @@ public class Game {
         }
     }
     private boolean checkGameComplete() {
-        if (tower3.size() == numberOfDiscs) {
-            result();
-            return true;
-        }
-        return false;
+        return tower3.size() == numberOfDiscs;
     }
 
     public Stack result() {
         return tower3;
     }
 }
-

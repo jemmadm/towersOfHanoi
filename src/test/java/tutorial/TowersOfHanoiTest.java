@@ -2,6 +2,8 @@ package tutorial;
 
 import org.junit.Test;
 
+import java.util.EmptyStackException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TowersOfHanoiTest {
@@ -47,7 +49,9 @@ public class TowersOfHanoiTest {
         assertThat(game.result()).containsOnly(1, 2, 3, 4, 5);
     }
 
-    @Test
+
+
+    @Test (expected = EmptyStackException.class)
     public void checkEmptyMethodWorks() {
         Game game = new Game(0);
         game.move(0,0);
